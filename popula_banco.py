@@ -44,11 +44,36 @@ Cursos = ["engenharia da ComPutação","Engenharia Elétrica","Engneharia Civil"
 
 Estados = ["PR","RJ","SP","RG","PA","PB","BA"]
 
-Disciplinas = ["CAlculo I","CAlculo II","CAlculo III", "FIsica I","FIsica II","FIsica III","FIsica IV",
-               "Geometria Analitica Algebra Linear","Equacoes Diferencias Ordinarias","Resistencia dos Materiais",
-               "Calculo Numerico","Variaveis Complexas","Sistemas de Controle I","Sistemas de Controle II","Controle Digital",
-               "Instrumentação Eletroeletronica","Trabalho de Conclusao do Curso I","Trabalho de Conclusao do Curso II",
-               "Sistemas Embarcados","Sistemas Digitais","REdes I","Banco de Dados I","REdes II","Banco de Dados II"]
+Disciplinas = ["Calculo I","Calculo II","Calculo III", "Fisica I","Fisica II","Fisica III","Fisica IV",
+               "Logica Para Computacao","Comunicacao Linguistica","Fundamentos De Programacao",
+               "Introducao A Engenharia","Algoritmos e Estrutura de Dados I","Algoritmos e Estrutura de Dados 2",
+               "Desenho Tecnico","Metodologia de Pesquisa","Quimica","Circuitos Digitais","Matematica Discreta",
+               "Programação Orientada a Objetos","Eletronica A","Eletronica B","Fundamentos de Teoria da Computação",
+               "Compiladores","Principio de Sistemas de Comunicacao","Arquitetura e Organizacao de Computadores",
+               "Analise e Projeto de Sistemas","Engenharia de Software","Probabilidade e Estatistica",
+               "Geometria Analitica Algebra Linear","Equacoes Diferencias Ordinarias","Principio de Resistencia dos Materiais",
+               "Analise de Circuitos Eletricos","Mecanica Geral","Calculo Numerico","Variaveis Complexas",
+               "Sistemas de Controle I","Sistemas de Controle II","Controle Digital","Sistemas Microcontrolados",
+               "Sistemas Operacionais","Instrumentação Eletroeletronica","Trabalho de Conclusao do Curso I",
+               "Trabalho de Conclusao do Curso II","Oficina de Integracao","Estagio Curricular Obrigatorio",
+               "Logica Reconfiguravel","Sistemas Embarcados","Sistemas Digitais","Redes de Computadores I",
+               "Banco de Dados I","Redes de Computadores II","Banco de Dados II","Sistemas Inteligentes",
+               "Sistemas Distribuidos","Seguranca Computacional","Economia","Etica Profissao e Cidadania",
+               "Empreendedorismo","Atividades Complementares","Sistemas Lineares"]
+
+CodDisciplinas = ["CD21NB","CD22NB","CD23NB","FI21NB","FI22NB","FI23NB","FI24NB","LC21CP","CL21NB","FP21NB",
+                  "IE21CP","AE22CP","AE23CP","DT22NB","MP22NB","QU22NB","CD24CP","MD24CP","PO24CP","EL25CP",
+                  "EL26CP","FT25CP","CO28CP","PS26CP","AO26CP","AP25CP","ES26CP","PE22NB","GA21NB","ED23NB",
+                  "PR25CP","AC24NB","MG24NB","CN24NB","VC23NB","SC25CP","SC26CP","CD27CP","SM26CP","SO25CP",
+                  "IE27CP","TC28CP","TC29CP","OI25CP","ES30CP","LR27CP","SE28CP","SD25CP","RC27CP","BD26CP",
+                  "RC28CP","BD27CP","SI27CP","SD29CP","SC28CP","EC29NB","EP29NB","EE27CP","AC30CP","SL24CP"]
+
+SiglaPreReq =    ["NULL","CD21NB","CD22NB","NULL","FI21NB","FI22NB","FI23NB","NULL","NULL","NULL",
+                  "NULL","NULL","AE22CP","NULL","NULL","NULL","FI23NB","NULL","FP21NB","AC24NB",
+                  "EL25CP","MD24CP","FT25CP","SL24CP","SD25CP","AE22CP","AP25CP","CD21NB","NULL","CD22NB",
+                  "MG24NB","FI23NB","FI21NB","ED23NB","CD22NB","AC24NB","SC25CP","SC26CP","SD25CP","AO26CP",
+                  "EL26CP","OI25CP","TC28CP","NULL","NULL","SM26CP","SM26CP","CD24CP","PS26CP","AE22CP",
+                  "RC27CP","BD26CP","AE22CP","LR27CP","RC27CP","NULL","NULL","NULL","NULL","ED23NB"]
 
 def random_data( start):
     end = start + datetime.timedelta(days=1)
