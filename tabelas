@@ -7,37 +7,39 @@ Create table Aluno(
 	Cidade varchar(30),
 	Estado varchar(2),
 	Curso varchar(50),
-	perioto integer
+	periodo integer
 );
 Create table Disciplina(
 	Sigla char(7) PRIMARY KEY,
-	Nome varchar(25) NOT NULL,
+	Nome varchar(50) NOT NULL,
 	SiglaPreReq char(7),
 	NNCred decimal(2) NOT NULL,
 	Depto char(8) NOT NULL,
 	Monitor decimal(8)
-	CONSTRAINT fk_aluno
-		FOREIGN KEY(Monitor) 
-	  	REFERENCES Aluno(RA)
-	  	ON DELETE SET NULL
 );
 Create table Matricula(
 	RA decimal(8) NOT NULL,
 	Sigla char(7) NOT NULL,
 	Ano char(4) NOT NULL,
 	Semestre char(1) NOT NULL,
-	CodTurma varchar(8) PRIMARY KEY,
+	CodTurma varchar(25),
 	NotaP1 numeric(3,1),
 	NotaP2 numeric(3,1),
 	NotaTrab numeric(3,1),
 	NotaFim numeric(3,1),
-	Frequencia decimal(3)
+	Frequencia decimal(3),
+	PRIMARY KEY (RA, CodTurma),
 	CONSTRAINT fk_aluno
 		FOREIGN KEY(RA) 
 	  	REFERENCES Aluno(RA)
-	  	ON DELETE SET NULL
+	  	ON DELETE SET NULL,
 	CONSTRAINT fk_disciplina
 		FOREIGN KEY(Sigla)
 	  	REFERENCES Disciplina(Sigla)
 	  	ON DELETE SET NULL
 );
+commit
+
+drop table Aluno, Disciplina, Matricula; commit
+
+end
