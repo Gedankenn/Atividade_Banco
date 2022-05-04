@@ -99,7 +99,7 @@ remove_2 = lambda text: re.sub(' ','',text)
 
 inicio = datetime.datetime(year=1990, month=3, day = 22)
 random_data(inicio)
-N_alunos = 4
+N_alunos = 1864
 
 vet_alunos = []
 #etapa que insere alunos
@@ -122,16 +122,30 @@ for i in range(0,N_alunos):
     
     ra=random.randint(1000000,99999999)
     vet_alunos.append(alunos(nome,ra,data_nasci,idade,nome_mae,cidade,estado,curso,periodo))
+    
+    query = 'INSERT INTO Aluno (Nome, RA, DataNasc, Idade, NomeMae, Cidade, Estado, Curso, periodo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)'
+    values = (nome, ra, data_nasci, idade, nome_mae, cidade, estado, curso, periodo)
+    print(values)
+    send_query(query,values)
 
 #etapa para inserir em disciplinas
+i=0
 for disciplina in Disciplinas:
-    sigla = remove_2(remove_lower(disciplina))
+    #sigla = remove_2(remove_lower(disciplina))
+    sigla = CodDisciplinas[i]
+    sigla_pre_req = SiglaPreReq[i]
     nome = disciplina
-    monitor = ""
+    monitor = 0
     if(random.randint(0,5) == 3):
-        monitor = vet_alunos[random.randint(0,len(vet_alunos))].nome
+        monitor = vet_alunos[random.randint(0,len(vet_alunos)-1)].ra
     depto = remove_2(remove_lower(Cursos[random.randint(0,len(Cursos)-1)]))
-    #nncred?
+    NNcred = random.randint(36,48)
+    i=i+1
+    
+    query = 'INSERT INTO Disciplina (Sigla, Nome, SiglaPreReq, NNCred, Depto, Monitor) VALUES (%s, %s, %s, %s, %s, %s)'
+    values = (sigla, nome, sigla_pre_req, NNcred, depto, monitor)
+    print(values)
+    send_query(query,values)
 
 
 #Etapa de matriculas
@@ -139,13 +153,23 @@ for aluno in vet_alunos:
     ra = aluno.ra
     ano = random.randint(2016,2022)
     for a in range(ano,2023):
-        semestre = random.randint(1,2)
-        for i in range(0,random.randint(3,9)):
-            disciplina = Disciplinas[random.randint(0,len(Disciplinas)-1)]
-            sigla = str(remove_2(remove_lower(disciplina)))
-            cod_turma = str(aluno.curso)+sigla+str(ano-2000)
-            N1 = random.randint(0,10)
-            N2 = random.randint(0,10)
-            N3 = random.randint(0,10)
-            NFim = (N1+N2+N3)/3
-            freq = random.randint(0,100)
+        for semestre in range(1,3):
+            d = Disciplinas.copy()
+            c = CodDisciplinas.copy()
+            for i in range(0,random.randint(3,9)):
+                aux = random.randint(0,len(d)-1)
+                disciplina = d[aux]
+                sigla = c[aux]
+                cod_turma = remove_2(remove_lower(str(aluno.curso)))+sigla+str(a-2000)+"0"+str(semestre)
+                N1 = random.randint(0,10)
+                N2 = random.randint(0,10)
+                N3 = random.randint(0,10)
+                NFim = (N1+N2+N3)/3
+                freq = random.randint(0,100)
+                
+                query = 'INSERT INTO Matricula (RA, Sigla, Ano, Semestre, CodTurma, NotaP1, NotaP2, NotaTrab, NotaFIM, Frequencia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+                values = (ra, sigla, a, semestre, cod_turma, N1,N2,N3,NFim, freq)
+                print(values)
+                send_query(query,values)
+                d.remove(d[aux])
+                c.remove(c[aux])
