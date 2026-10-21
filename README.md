@@ -12,8 +12,8 @@ Database course assignment: a PostgreSQL schema for a university's students, cou
 ## Usage
 
 1. Create the tables in a PostgreSQL database by running the SQL in `tabelas`.
-2. Install the driver: `pip install psycopg2-binary`.
-3. Edit the connection parameters in `send_query()` in `popula_banco.py` (user, password, host, database).
+2. Install the dependencies: `pip install psycopg2-binary python-dotenv`.
+3. `cp .env.example .env` and set `PG_USER`, `PG_PASSWORD`, `PG_HOST` (optional `PG_PORT`, `PG_DATABASE`). `.env` is gitignored.
 4. Run `python3 popula_banco.py`.
 
 The script opens a new connection for every insert, so it is slow on large data sets.
