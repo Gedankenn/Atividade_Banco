@@ -1,7 +1,11 @@
 import datetime
+import os
 import random
 import re
 import psycopg2 as pg
+from dotenv import load_dotenv
+
+load_dotenv()  # PG_* settings from .env (gitignored)
 
 class alunos:
     def __init__(self, nome, ra, data_nasc, idade, nome_mae, cidade, estado, curso, periodo):
@@ -81,11 +85,11 @@ def random_data( start):
     return random_date
 
 def send_query(query, data):
-    connection = pg.connect(user = "REDACTED",
-                        password = "REDACTED",
-                        host = "REDACTED",
-                        port = "5432",
-                        database = "Atividade_01")
+    connection = pg.connect(user = os.environ["PG_USER"],
+                            password = os.environ["PG_PASSWORD"],
+                            host = os.environ["PG_HOST"],
+                            port = os.environ.get("PG_PORT", "5432"),
+                            database = os.environ.get("PG_DATABASE", "Atividade_01"))
 
     cursor = connection.cursor()
     cursor.execute(query,data)
